@@ -1,0 +1,30 @@
+[package]
+name = "ragcraft"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85.0"
+authors = ["Kreive Tech <contact@kreive.com.br>"]
+license = "MIT"
+description = "Fast semantic retrieval, smart document chunker, vector metrics, and embedded vector store for AI agents and RAG applications."
+repository = "https://github.com/kreivetech/ragcraft"
+homepage = "https://kreive.com.br"
+readme = "README.md"
+keywords = ["rag", "vector-store", "retrieval", "chunker", "embeddings"]
+categories = ["algorithms", "data-structures", "science"]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+postcard = { version = "1.1", features = ["use-std"] }
+thiserror = "2.0"
+tokio = { version = "1.40", features = ["sync", "fs", "io-util"], optional = true }
+tokenizers = { version = "0.21", optional = true }
+
+[features]
+default = []
+async = ["dep:tokio"]
+tokenizer = ["dep:tokenizers"]
+
+[dev-dependencies]
+tempfile = "3.17"
+tokio = { version = "1.40", features = ["rt", "rt-multi-thread", "macros", "sync", "fs"] }
